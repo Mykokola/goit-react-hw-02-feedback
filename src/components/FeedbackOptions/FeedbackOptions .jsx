@@ -1,4 +1,5 @@
 import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
 
 export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   return (
@@ -16,4 +17,9 @@ export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
       })}
     </>
   );
+};
+
+FeedbackOptions.propTypes = {
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  leaveFeedback: PropTypes.func.isRequired,
 };

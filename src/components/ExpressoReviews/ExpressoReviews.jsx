@@ -1,8 +1,8 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Statistics } from '../Statistics.jsx/Statistics';
 import { FeedbackOptions } from 'components/FeedbackOptions/FeedbackOptions ';
 import { Section } from 'components/Section/Section';
+import { Notification } from 'components/Notification/Notification';
 
 class ExpressoReviews extends React.Component {
   state = {
@@ -41,17 +41,21 @@ class ExpressoReviews extends React.Component {
         <Section
           title="Statistics"
           child={
-            <Statistics
-              good={good}
-              neutral={neutral}
-              bad={bad}
-              total={this.countTotalFeedback()}
-              positivePercentage={this.countPositiveFeedbackPercentage()}
-            />
+            <>
+              {this.countTotalFeedback() === 0 ? (
+                <Notification message="There is no feedback"></Notification>
+              ) : (
+                <Statistics
+                  good={good}
+                  neutral={neutral}
+                  bad={bad}
+                  total={this.countTotalFeedback()}
+                  positivePercentage={this.countPositiveFeedbackPercentage()}
+                />
+              )}
+            </>
           }
-        >
-          ( )
-        </Section>
+        ></Section>
       </>
     );
   }
